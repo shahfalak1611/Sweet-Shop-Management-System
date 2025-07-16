@@ -204,3 +204,35 @@ describe('SweetShop - Update Sweet Feature', () => {
     expect(() => shop.updateSweet(1, {})).toThrow('No update fields provided');
   });
 });
+
+
+//tests for sort sweets
+describe('SweetShop - Sort Sweets Feature', () => {
+  let shop;
+
+  beforeEach(() => {
+    shop = new SweetShop();
+    shop.addSweet({ id: 1, name: 'Ladoo', category: 'candy', price: 40, quantity: 25 });
+    shop.addSweet({ id: 2, name: 'Barfi', category: 'pastry', price: 60, quantity: 10 });
+    shop.addSweet({ id: 3, name: 'Kaju Katli', category: 'pastry', price: 100, quantity: 5 });
+  });
+
+  test('should sort sweets by name ascending', () => {
+    const sorted = shop.sortSweets('name', 'asc');
+    expect(sorted.map(s => s.name)).toEqual(['Barfi', 'Kaju Katli', 'Ladoo']);
+  });
+
+  test('should sort sweets by price descending', () => {
+    const sorted = shop.sortSweets('price', 'desc');
+    expect(sorted.map(s => s.price)).toEqual([100, 60, 40]);
+  });
+
+  test('should throw error for unsupported sort field', () => {
+    expect(() => shop.sortSweets('invalidField', 'asc')).toThrow('Invalid sort field');
+  });
+
+  test('should default to ascending if order not specified', () => {
+    const sorted = shop.sortSweets('name');
+    expect(sorted.map(s => s.name)).toEqual(['Barfi', 'Kaju Katli', 'Ladoo']);
+  });
+});
