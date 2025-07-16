@@ -122,3 +122,32 @@ describe('SweetShop - Search Feature', () => {
     expect(result).toEqual([]);
   });
 });
+
+//tests for purchase sweets as a part of inventory management
+describe('SweetShop - Purchase Sweet Feature', () => {
+  let shop;
+
+  beforeEach(() => {
+    shop = new SweetShop();
+    shop.addSweet({ id: 1, name: 'Jalebi', category: 'candy', price: 40, quantity: 10 });
+  });
+
+  test('should decrease stock after a successful purchase', () => {
+    shop.purchaseSweet(1, 3);
+    const sweet = shop.getAllSweets().find(s => s.id === 1);
+    expect(sweet.quantity).toBe(7);
+  });
+
+  test('should throw an error if the sweet ID does not exist', () => {
+    expect(() => shop.purchaseSweet(99, 2)).toThrow('Sweet not found');
+  });
+
+  test('should throw an error if requested quantity exceeds available stock', () => {
+    expect(() => shop.purchaseSweet(1, 20)).toThrow('Insufficient stock');
+  });
+
+  test('should throw an error if quantity is zero or negative', () => {
+    expect(() => shop.purchaseSweet(1, 0)).toThrow('Invalid purchase quantity');
+    expect(() => shop.purchaseSweet(1, -3)).toThrow('Invalid purchase quantity');
+  });
+});
