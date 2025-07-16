@@ -66,6 +66,24 @@ class SweetShop {
     sweet.quantity += quantity;
   }
 
+  updateSweet(id, updates) {
+    const sweet = this.sweets.find(s => s.id === id);
+    if (!sweet) {
+      throw new Error('Sweet not found');
+    }
+
+    if (!updates || Object.keys(updates).length === 0) {
+      throw new Error('No update fields provided');
+    }
+
+    const allowedFields = ['name', 'category', 'price', 'quantity'];
+    for (let key of Object.keys(updates)) {
+      if (allowedFields.includes(key) && updates[key] !== undefined) {
+        sweet[key] = updates[key];
+      }
+    }
+  }
+
   getAllSweets() {
     return this.sweets;
   }
