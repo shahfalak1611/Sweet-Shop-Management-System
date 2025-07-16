@@ -177,3 +177,30 @@ describe('SweetShop - Restock Sweet Feature', () => {
     expect(() => shop.restockSweet(1, -4)).toThrow('Invalid restock quantity');
   });
 });
+
+//tests fou updating sweets
+describe('SweetShop - Update Sweet Feature', () => {
+  let shop;
+
+  beforeEach(() => {
+    shop = new SweetShop();
+    shop.addSweet({ id: 1, name: 'Halwa', category: 'pastry', price: 80, quantity: 12 });
+  });
+
+  test('should update name and price of an existing sweet', () => {
+    shop.updateSweet(1, { name: 'Badam Halwa', price: 100 });
+
+    const sweet = shop.getAllSweets().find(s => s.id === 1);
+    expect(sweet.name).toBe('Badam Halwa');
+    expect(sweet.price).toBe(100);
+    expect(sweet.quantity).toBe(12); // unchanged
+  });
+
+  test('should throw error if sweet ID does not exist', () => {
+    expect(() => shop.updateSweet(99, { name: 'Mysore Pak' })).toThrow('Sweet not found');
+  });
+
+  test('should throw error if no update fields are provided', () => {
+    expect(() => shop.updateSweet(1, {})).toThrow('No update fields provided');
+  });
+});
