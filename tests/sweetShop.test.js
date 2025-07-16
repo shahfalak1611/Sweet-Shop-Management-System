@@ -83,3 +83,42 @@ describe('SweetShop - View Sweets Feature', () => {
     expect(emptyShop.getAllSweets()).toEqual([]);
   });
 });
+
+
+//tests for search & sort sweets
+describe('SweetShop - Search Feature', () => {
+  let shop;
+
+  beforeEach(() => {
+    shop = new SweetShop();
+    shop.addSweet({ id: 1, name: 'Kaju Katli', category: 'pastry', price: 100, quantity: 10 });
+    shop.addSweet({ id: 2, name: 'Ladoo', category: 'candy', price: 50, quantity: 20 });
+    shop.addSweet({ id: 3, name: 'Milk Cake', category: 'pastry', price: 70, quantity: 15 });
+  });
+
+  test('should search sweets by name (case-insensitive)', () => {
+    const result = shop.search({ name: 'kaju katli' });
+    expect(result.length).toBe(1);
+    expect(result[0].name).toBe('Kaju Katli');
+  });
+
+  test('should search sweets by category', () => {
+    const result = shop.search({ category: 'pastry' });
+    expect(result.length).toBe(2);
+  });
+
+  test('should search sweets by price range', () => {
+    const result = shop.search({ minPrice: 60, maxPrice: 100 });
+    expect(result.length).toBe(2);
+  });
+
+  test('should return all sweets if no criteria provided', () => {
+    const result = shop.search({});
+    expect(result.length).toBe(3);
+  });
+
+  test('should return empty array if no matches found', () => {
+    const result = shop.search({ name: 'Jalebi' });
+    expect(result).toEqual([]);
+  });
+});
