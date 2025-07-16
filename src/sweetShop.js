@@ -84,6 +84,22 @@ class SweetShop {
     }
   }
 
+  sortSweets(field, order = 'asc') {
+    const validFields = ['name', 'category', 'price', 'quantity'];
+    if (!validFields.includes(field)) {
+      throw new Error('Invalid sort field');
+    }
+
+    const sorted = [...this.sweets].sort((a, b) => {
+      if (typeof a[field] === 'string') {
+        return a[field].localeCompare(b[field]);
+      }
+      return a[field] - b[field];
+    });
+
+    return order === 'desc' ? sorted.reverse() : sorted;
+  }
+
   getAllSweets() {
     return this.sweets;
   }
