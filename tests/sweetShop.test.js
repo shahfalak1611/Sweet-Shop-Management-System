@@ -1,5 +1,6 @@
 const { SweetShop } = require('../src/sweetShop');
 
+//tests for adding a sweet
 describe('SweetShop - Add Sweet Feature', () => {
   let shop;
 
@@ -31,5 +32,28 @@ describe('SweetShop - Add Sweet Feature', () => {
     expect(() =>
       shop.addSweet({ id: 2, name: 'Ladoo', price: 20, quantity: 5 })
     ).toThrow('Invalid sweet data');
+  });
+});
+
+
+//tests for deleting a sweet
+describe('SweetShop - Delete Sweet Feature', () => {
+  let shop;
+
+  beforeEach(() => {
+    shop = new SweetShop();
+    shop.addSweet({ id: 1, name: 'Kaju Katli', category: 'pastry', price: 100, quantity: 10 });
+    shop.addSweet({ id: 2, name: 'Gulab Jamun', category: 'candy', price: 60, quantity: 15 });
+  });
+
+  test('should delete a sweet by ID successfully', () => {
+    shop.deleteSweet(1);
+    const sweets = shop.getAllSweets();
+    expect(sweets.length).toBe(1);
+    expect(sweets[0].id).toBe(2);
+  });
+
+  test('should throw error if sweet ID does not exist', () => {
+    expect(() => shop.deleteSweet(99)).toThrow('Sweet with this ID does not exist');
   });
 });
