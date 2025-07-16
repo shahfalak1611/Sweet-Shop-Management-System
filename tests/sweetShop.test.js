@@ -151,3 +151,29 @@ describe('SweetShop - Purchase Sweet Feature', () => {
     expect(() => shop.purchaseSweet(1, -3)).toThrow('Invalid purchase quantity');
   });
 });
+
+
+//tests for restocking sweets
+describe('SweetShop - Restock Sweet Feature', () => {
+  let shop;
+
+  beforeEach(() => {
+    shop = new SweetShop();
+    shop.addSweet({ id: 1, name: 'Barfi', category: 'pastry', price: 60, quantity: 5 });
+  });
+
+  test('should increase stock when restocked', () => {
+    shop.restockSweet(1, 10);
+    const sweet = shop.getAllSweets().find(s => s.id === 1);
+    expect(sweet.quantity).toBe(15);
+  });
+
+  test('should throw error if sweet ID does not exist', () => {
+    expect(() => shop.restockSweet(99, 5)).toThrow('Sweet not found');
+  });
+
+  test('should throw error if restock quantity is zero or negative', () => {
+    expect(() => shop.restockSweet(1, 0)).toThrow('Invalid restock quantity');
+    expect(() => shop.restockSweet(1, -4)).toThrow('Invalid restock quantity');
+  });
+});
