@@ -18,6 +18,14 @@ class SweetShop {
     this.sweets.push({ id, name, category, price, quantity });
   }
 
+  deleteSweet(id) {
+    const index = this.sweets.findIndex(sweet => sweet.id === id);
+    if (index === -1) {
+      throw new Error('Sweet with this ID does not exist');
+    }
+    this.sweets.splice(index, 1);
+  }
+
   getAllSweets() {
     return this.sweets;
   }
