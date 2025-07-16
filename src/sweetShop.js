@@ -26,6 +26,16 @@ class SweetShop {
     this.sweets.splice(index, 1);
   }
 
+  search({ name, category, minPrice, maxPrice }) {
+    return this.sweets.filter(sweet => {
+      const matchName = name ? sweet.name.toLowerCase().includes(name.toLowerCase()) : true;
+      const matchCategory = category ? sweet.category === category : true;
+      const matchMinPrice = minPrice !== undefined ? sweet.price >= minPrice : true;
+      const matchMaxPrice = maxPrice !== undefined ? sweet.price <= maxPrice : true;
+      return matchName && matchCategory && matchMinPrice && matchMaxPrice;
+    });
+  }
+
   getAllSweets() {
     return this.sweets;
   }
