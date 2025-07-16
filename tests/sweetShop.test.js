@@ -57,3 +57,29 @@ describe('SweetShop - Delete Sweet Feature', () => {
     expect(() => shop.deleteSweet(99)).toThrow('Sweet with this ID does not exist');
   });
 });
+
+
+//tests for viewing all sweets
+describe('SweetShop - View Sweets Feature', () => {
+  let shop;
+
+  beforeEach(() => {
+    shop = new SweetShop();
+    shop.addSweet({ id: 1, name: 'Rasgulla', category: 'candy', price: 40, quantity: 30 });
+    shop.addSweet({ id: 2, name: 'Soan Papdi', category: 'pastry', price: 35, quantity: 50 });
+  });
+
+  test('should return all sweets currently in the shop', () => {
+    const sweets = shop.getAllSweets();
+    expect(sweets.length).toBe(2);
+    expect(sweets).toEqual([
+      { id: 1, name: 'Rasgulla', category: 'candy', price: 40, quantity: 30 },
+      { id: 2, name: 'Soan Papdi', category: 'pastry', price: 35, quantity: 50 }
+    ]);
+  });
+
+  test('should return an empty array if no sweets are available', () => {
+    const emptyShop = new SweetShop();
+    expect(emptyShop.getAllSweets()).toEqual([]);
+  });
+});
