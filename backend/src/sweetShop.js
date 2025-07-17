@@ -85,7 +85,7 @@ class SweetShop {
   }
 
   sortSweets(field, order = 'asc') {
-    const validFields = ['name', 'category', 'price', 'quantity'];
+    const validFields = ['id','name', 'category', 'price', 'quantity'];
     if (!validFields.includes(field)) {
       throw new Error('Invalid sort field');
     }
@@ -99,6 +99,11 @@ class SweetShop {
 
     return order === 'desc' ? sorted.reverse() : sorted;
   }
+  setSweets(sweetsArray) {
+  if (Array.isArray(sweetsArray)) {
+    this.sweets = sweetsArray;
+  }
+}
 
   getAllSweets() {
     return this.sweets;
