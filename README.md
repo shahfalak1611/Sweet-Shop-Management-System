@@ -8,7 +8,6 @@ The Sweet Shop Management System is a full-stack JavaScript-based project built 
 ## Table of Contents
 
 - Features
-- Folder Structure
 - Technologies Used
 - Prerequisites
 - Installation and Setup Instructions
@@ -124,5 +123,5 @@ You should see the Sweet Shop Management UI where you can add, update, delete,so
 ## Additional Notes
 
 - This project does not use any external database. All data is temporarily stored in LocalStorage for frontend persistence.
-- This project was developed as part of a assessment given by INCUBYTE TECHNOLABS which mainly focused on TDD and frontend integration using modern JavaScript.
+- This project was developed as part of a assessment given by INCUBYTE which mainly focused on TDD and frontend integration using modern JavaScript.
 
