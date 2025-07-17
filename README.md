@@ -3,7 +3,7 @@
 The Sweet Shop Management System is a full-stack JavaScript-based project built using the principles of Test-Driven Development (TDD). This system allows users to manage sweets by adding, deleting, updating, searching, sorting, purchasing, and restocking sweets. It includes a frontend built using React (with Tailwind CSS) and a backend written in JavaScript.
 
 ## Live Preview(using Vercel)
- [View Frontend on Vercel](https://sweet-shop-management-system-jstd-3cnp4jixi.vercel.app)
+ View Frontend on Vercel : [https://sweet-shop-management-system-jstd-3cnp4jixi.vercel.app]
 
 ## Table of Contents
 
