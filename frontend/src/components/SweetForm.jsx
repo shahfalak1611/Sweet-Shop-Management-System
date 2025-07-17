@@ -66,7 +66,7 @@ p-3 rounded-xl shadow-lg">
               name="name"
               type="text"
               className={inputClasses}
-              placeholder="e.g., Gulab Jamun"
+              placeholder="Name"
               value={form.name}
               onChange={(e) => setForm({ ...form, name: e.target.value })}
               required

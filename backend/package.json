@@ -9,6 +9,19 @@
   "license": "ISC",
   "description": "",
   "devDependencies": {
-    "jest": "^30.0.4"
+    "jest": "^30.0.4",
+    "jest-html-reporter": "^4.3.0"
+  },
+  "jest": {
+    "reporters": [
+      "default",
+      [
+        "jest-html-reporter",
+        {
+          "pageTitle": "Test Report",
+          "outputPath": "./test-report/report.html"
+        }
+      ]
+    ]
   }
 }
