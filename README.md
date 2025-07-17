@@ -89,10 +89,13 @@ cd backend
 Install dependencies:
 
 npm init -y
+
 npm install --save-dev jest
 
 To run tests:
+
 npm test
+
 These test scripts use console outputs to show whether the logic is working correctly (e.g., "✅ Test Passed", "❌ Test Failed").
 
 ## Running the Project Locally
@@ -121,5 +124,5 @@ You should see the Sweet Shop Management UI where you can add, update, delete,so
 ## Additional Notes
 
 - This project does not use any external database. All data is temporarily stored in LocalStorage for frontend persistence.
-- This project was developed as part of a assessment given by INCUBYTE TECHNOLABS which maninly focused on TDD and frontend integration using modern JavaScript.
+- This project was developed as part of a assessment given by INCUBYTE TECHNOLABS which mainly focused on TDD and frontend integration using modern JavaScript.
 
